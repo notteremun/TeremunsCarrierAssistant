@@ -4,8 +4,9 @@ using Newtonsoft.Json;
 
 namespace TeremunsCarrierAssistant.Events {
     public class JournalHandler {
-        public LocationEventData locationData;
-        public FSDJumpData fsdJumpData;
+        public readonly LocationEventData locationData;
+        public readonly FSDJumpData fsdJumpData;
+        public readonly CarrierJumpRequestData carrierJumpRequestData;
         
         public JournalHandler(string dataPath) {
             fsdJumpData = new FSDJumpData();
@@ -22,6 +23,7 @@ namespace TeremunsCarrierAssistant.Events {
             foreach(string jsonObj in jsonList) { 
                 if (jsonObj.Contains("\"event\":\"Location\"")) { locationData = JsonConvert.DeserializeObject<LocationEventData>(jsonObj); }
                 if (jsonObj.Contains("\"event\":\"FSDJump\"")) { fsdJumpData = JsonConvert.DeserializeObject<FSDJumpData>(jsonObj); }
+                if (jsonObj.Contains("\"event\":\"CarrierJumpRequest\"")) { carrierJumpRequestData = JsonConvert.DeserializeObject<CarrierJumpRequestData>(jsonObj); }
             }
         }
     }

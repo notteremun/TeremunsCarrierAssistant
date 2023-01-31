@@ -35,6 +35,7 @@
             this.listJumps = new System.Windows.Forms.ListBox();
             this.textCurrentLocation = new System.Windows.Forms.Label();
             this.textNextJump = new System.Windows.Forms.Label();
+            this.textDebug = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // selectCarrierRoute
@@ -84,9 +85,10 @@
             this.listJumps.ForeColor = System.Drawing.Color.DarkOrange;
             this.listJumps.FormattingEnabled = true;
             this.listJumps.ItemHeight = 15;
-            this.listJumps.Location = new System.Drawing.Point(609, 12);
+            this.listJumps.Location = new System.Drawing.Point(519, 8);
             this.listJumps.Name = "listJumps";
-            this.listJumps.Size = new System.Drawing.Size(179, 405);
+            this.listJumps.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.listJumps.Size = new System.Drawing.Size(179, 300);
             this.listJumps.TabIndex = 3;
             // 
             // textCurrentLocation
@@ -96,7 +98,7 @@
             this.textCurrentLocation.Location = new System.Drawing.Point(150, 12);
             this.textCurrentLocation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.textCurrentLocation.Name = "textCurrentLocation";
-            this.textCurrentLocation.Size = new System.Drawing.Size(454, 33);
+            this.textCurrentLocation.Size = new System.Drawing.Size(364, 33);
             this.textCurrentLocation.TabIndex = 4;
             this.textCurrentLocation.Text = "Current Location: ???";
             this.textCurrentLocation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -108,17 +110,29 @@
             this.textNextJump.Location = new System.Drawing.Point(150, 49);
             this.textNextJump.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.textNextJump.Name = "textNextJump";
-            this.textNextJump.Size = new System.Drawing.Size(454, 33);
+            this.textNextJump.Size = new System.Drawing.Size(364, 33);
             this.textNextJump.TabIndex = 5;
             this.textNextJump.Text = "... ???";
             this.textNextJump.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textDebug
+            // 
+            this.textDebug.Font = new System.Drawing.Font("Montserrat Medium", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textDebug.ForeColor = System.Drawing.Color.DarkOrange;
+            this.textDebug.Location = new System.Drawing.Point(8, 291);
+            this.textDebug.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.textDebug.Name = "textDebug";
+            this.textDebug.Size = new System.Drawing.Size(506, 18);
+            this.textDebug.TabIndex = 6;
+            this.textDebug.Text = "Waiting for a flightplan...";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(707, 318);
+            this.Controls.Add(this.textDebug);
             this.Controls.Add(this.textNextJump);
             this.Controls.Add(this.textCurrentLocation);
             this.Controls.Add(this.listJumps);
@@ -133,6 +147,7 @@
             this.TopMost = true;
             this.ResumeLayout(false);
         }
+        private System.Windows.Forms.Label textDebug;
         private System.Windows.Forms.Label textCurrentLocation;
         private System.Windows.Forms.Label textNextJump;
         private System.Windows.Forms.ListBox listJumps;
