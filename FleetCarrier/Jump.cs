@@ -5,12 +5,14 @@ using Label = System.Windows.Forms.Label;
 
 namespace TeremunsCarrierAssistant.FleetCarrier {
     public class Jump {
-        private readonly Keyboard keyboard;
+        public readonly Keyboard keyboard;
         private Label debugLabel;
+        private int buffer;
         
-        public Jump(Keyboard keyboard, Label debugLabel) {
+        public Jump(Keyboard keyboard, Label debugLabel, int buffer) {
             this.keyboard = keyboard;
             this.debugLabel = debugLabel;
+            this.buffer = buffer;
         }
 
         public void Perform() {
@@ -26,7 +28,7 @@ namespace TeremunsCarrierAssistant.FleetCarrier {
             keyboard.Press(VirtualKeyCode.VK_S);       // Opens Navigation Panel
             keyboard.Press(VirtualKeyCode.SPACE);
             keyboard.Press(VirtualKeyCode.SPACE);
-            keyboard.Sleep(7000);
+            keyboard.Sleep(buffer);
             
             debugLabel.Text = "Searching and plotting for the system...";
             keyboard.Press(VirtualKeyCode.UP);         // Navigate to the search bar and paste content
@@ -39,7 +41,7 @@ namespace TeremunsCarrierAssistant.FleetCarrier {
             keyboard.Sleep(250);
             keyboard.Press(VirtualKeyCode.VK_E);
             keyboard.LongSpace();
-            keyboard.Sleep(15000);
+            keyboard.Sleep(buffer * 2);
             
             debugLabel.Text = "Backing out of the carrier mangement screen...";
             keyboard.Press(VirtualKeyCode.BACK);

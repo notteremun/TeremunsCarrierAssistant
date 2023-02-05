@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Timers;
 using System.Windows.Forms;
 using TeremunsCarrierAssistant.Events;
@@ -17,13 +18,15 @@ namespace TeremunsCarrierAssistant {
         private readonly string currentUserPath;
         
         private int currentIndex = 0;
-        private readonly Jump jump;
-        private readonly Refuel refuel;
+        
+        private Jump jump;
+        private Refuel refuel;
 
         private static Timer timer;
         private static DateTime targetTime;
 
         private bool onJourney, isJumping, isRefueled = false;
+        private bool refuelManually = true;
 
 
         public Main() {
@@ -32,8 +35,8 @@ namespace TeremunsCarrierAssistant {
             
             // Register KeyInputs
             Keyboard vInput = new Keyboard();
-            jump = new Jump(vInput, textDebug);
-            refuel = new Refuel(vInput, textDebug);
+            jump = new Jump(vInput, textDebug, 7000);
+           // refuel = new Refuel(vInput, textDebug, 1, 0);
             
             UpdateJournal();
             textCurrentLocation.Text = @"Current Location: " + journalHandler.fsdJumpData.StarSystem;
@@ -50,14 +53,22 @@ namespace TeremunsCarrierAssistant {
             if (isPlayerInSystem()) currentIndex++;
             Clipboard.SetText(plan.SystemName[currentIndex]);
 
-            refuel.Perform();
+            if(!refuelManually) refuel.Perform();
+            else {
+               // refuel.fuelAmount = Convert.ToInt32(plan.FuelUsed[currentIndex]);
+               // refuel.Perform();
+            }
             isRefueled = true;
             
             while (onJourney) {
                 //Check if the player is Jumping
                 if (!isJumping) {
                     if (!isRefueled) {
-                        refuel.Perform();
+                        if(!refuelManually) refuel.Perform();
+                        else {
+                           // refuel.fuelAmount = Convert.ToInt32(plan.FuelUsed[currentIndex]);
+                          //  refuel.Perform();
+                        }
                         isRefueled = true;
                     }
                     
@@ -66,7 +77,30 @@ namespace TeremunsCarrierAssistant {
                     targetTime = journalHandler.carrierJumpRequestData.DepartureTime;
                     // TODO: Check if Jump is longer than 25 minutes, if replot once otherwise keep!
                     // TODO: But this is something I want to have on a different release of this tool :)
-                    targetTime = targetTime.AddMinutes(4).AddSeconds(30); // Add the cooldown
+
+                    if (checkIfJumpBugged()) {
+                        //REPLOT
+                        textDebug.Text = "Jump taking to long replotting...";
+                        timer.Stop();
+                        jump.Perform();
+                        textDebug.Text = "Jump taking to long replotting...";
+                        System.Threading.Thread.Sleep(50000);
+                        jump.Perform();
+                        
+                        targetTime = journalHandler.carrierJumpRequestData.DepartureTime;
+                    
+                        targetTime = targetTime.AddMinutes(4).AddSeconds(50); // Add the cooldown
+                        textDebug.Text = "Jumping to " + journalHandler.carrierJumpRequestData.SystemName + "...";
+                    
+                        timer = new Timer(1000);
+                        timer.Elapsed += Timer_Elapsed;
+                        timer.Start();
+                    
+                        isJumping = true;
+                    }
+                    
+                    
+                    targetTime = targetTime.AddMinutes(4).AddSeconds(50); // Add the cooldown
                     textDebug.Text = "Jumping to " + journalHandler.carrierJumpRequestData.SystemName + "...";
                     
                     timer = new Timer(1000);
@@ -101,6 +135,14 @@ namespace TeremunsCarrierAssistant {
 
         private bool isPlayerInSystem() => journalHandler.locationData.StarSystem.Equals(plan.SystemName[currentIndex]);
 
+        private bool checkIfJumpBugged() {
+            DateTime test = DateTime.UtcNow.AddMinutes(25).AddSeconds(30);
+
+            return (targetTime > test);
+            // targetTime > test is bugged -> true???
+            // targetTime < test is not bugged -> false???
+        }
+        
         private void UpdateJournal() {
             DirectoryInfo dirInfo = new DirectoryInfo($"{currentUserPath}\\Saved Games\\Frontier Developments\\Elite Dangerous\\");
             FileInfo file = (from f in dirInfo.GetFiles("*.log") orderby f.LastWriteTime descending select f).First();
@@ -116,6 +158,11 @@ namespace TeremunsCarrierAssistant {
 
             journalHandler = new JournalHandler(copy);
         }
+
+        private void UpdateCarrierOperations() {
+            jump = new Jump(jump.keyboard, textDebug, (int)numUpDownGalaxyBuffer.Value);
+          //  refuel = new Refuel(refuel.keyboard, textDebug, (int)tritiumItemSlot.Value, 0);
+        }
         
         // Form Event Handlers
         private void btnOpenFileDialog_Click(object sender, EventArgs e) {
@@ -125,7 +172,7 @@ namespace TeremunsCarrierAssistant {
 
                 foreach (string system in plan.SystemName.ToArray()) listJumps.Items.Add(system);
 
-                textDebug.Text = "Waiting for activating the assistent...";
+                textDebug.Text = "Waiting for activating the assistant...";
                 flightPlanLoaded = true;
             } catch (Exception) {
                 //ignore
@@ -135,6 +182,12 @@ namespace TeremunsCarrierAssistant {
         
         private void btnStart_Click(object sender, EventArgs e) {
             if(flightPlanLoaded) Assistant();
+        }
+        
+        private void galaxyBuffer_ValueChanged(object sender, EventArgs e) => UpdateCarrierOperations();
+        private void tritiumItemSlot_ValueChanged(object sender, EventArgs e) => UpdateCarrierOperations();
+        private void checkRefuelMan_CheckedChanged(object sender, EventArgs e) {
+            refuelManually = checkRefuelMan.Checked;
         }
     }
 }
