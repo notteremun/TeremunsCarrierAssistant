@@ -38,7 +38,6 @@ namespace TeremunsCarrierAssistant.FleetCarrier {
             keyboard.Sleep(buffer);
             
             keyboard.Press(VirtualKeyCode.BACK);
-            keyboard.Press(VirtualKeyCode.SPACE);
         }
     }
 }

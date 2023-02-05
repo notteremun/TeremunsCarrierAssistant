@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
@@ -51,7 +52,6 @@ namespace TeremunsCarrierAssistant {
                 while (onJourney) {
                     UpdateJournal(); // Get Latest Journal
                 
-                    if (isPlayerInSystem()) currentIndex++;
                     textNextJump.Text = "... " + plan.SystemName[currentIndex];
 
                     //Check if the player is Jumping
@@ -76,15 +76,14 @@ namespace TeremunsCarrierAssistant {
                         // TODO: Check if Jump is longer than 25 minutes, if replot once otherwise keep!
                         // TODO: But this is something I want to have on a different release of this tool :)
                         
-                        /*
                         if (checkIfJumpBugged() && !isReplotted) {
                             //REPLOT
                             textDebug.Text = "Jump taking to long replotting...";
                             countdown.Stop();
-                            jump.Perform();
+                            jump.Perform(plan.SystemName[currentIndex]);
                             textDebug.Text = "Jump taking to long replotting, application will freeze till jump cooldown is completed...";
                             Thread.Sleep(50000); // Jump Cooldown
-                            jump.Perform();
+                            jump.Perform(plan.SystemName[currentIndex]);
                             
                             targetTime = journalHandler.carrierJumpRequestData.DepartureTime;
                         
@@ -95,9 +94,9 @@ namespace TeremunsCarrierAssistant {
 
                             isReplotted = true;
                             
-                            continue;
+                            UpdateJournal();
+                            targetTime = journalHandler.carrierJumpRequestData.DepartureTime;
                         }
-                        */
 
                         targetTime = targetTime.AddMinutes(4).AddSeconds(50); // Add the cooldown
                         textDebug.Text = "Jumping to " + journalHandler.carrierJumpRequestData.SystemName + "...";
@@ -106,7 +105,7 @@ namespace TeremunsCarrierAssistant {
                         
                         isJumping = true;
                     } else {
-                        textDebug.Text = "Jump: " + targetTime.ToLongTimeString() + " - Now: " + DateTime.Now.ToUniversalTime(); 
+                        UpdateJournal();
                     }
                 }
             });
@@ -114,6 +113,8 @@ namespace TeremunsCarrierAssistant {
         }
         
         private void Timer_Elapsed(object sender, ElapsedEventArgs e) {
+            textDebug.Text = "Jump: " + targetTime.ToLongTimeString() + " - Now: " + DateTime.Now.ToUniversalTime(); 
+
             if (DateTime.Now.ToUniversalTime() < targetTime) return;
             
             countdown.Stop();
