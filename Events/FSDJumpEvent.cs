@@ -19,9 +19,9 @@ namespace TeremunsCarrierAssistant.Events {
         public string SystemGovernment_Localised { get; set; }
         public string SystemSecurity { get; set; }
         public string SystemSecurity_Localised { get; set; }
-        public Int64 Population { get; set; }
+        public long Population { get; set; }
         public string Body { get; set; }
-        public int BodyID { get; set; }
+        public long BodyID { get; set; }
         public string BodyType { get; set; }
         public double JumpDist { get; set; }
         public double FuelUsed { get; set; }

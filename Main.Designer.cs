@@ -42,8 +42,10 @@
             this.numUpDownGalaxyBuffer = new System.Windows.Forms.NumericUpDown();
             this.checkRefuelMan = new System.Windows.Forms.CheckBox();
             this.btnUpdateLocation = new System.Windows.Forms.Button();
+            this.countdown = new System.Timers.Timer();
             ((System.ComponentModel.ISupportInitialize)(this.tritiumItemSlot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownGalaxyBuffer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.countdown)).BeginInit();
             this.SuspendLayout();
             // 
             // selectCarrierRoute
@@ -239,6 +241,11 @@
             this.btnUpdateLocation.UseVisualStyleBackColor = true;
             this.btnUpdateLocation.Click += new System.EventHandler(this.btnUpdateLocation_Click);
             // 
+            // countdown
+            // 
+            this.countdown.SynchronizingObject = this;
+            this.countdown.Elapsed += new System.Timers.ElapsedEventHandler(this.Timer_Elapsed);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -266,8 +273,10 @@
             this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.tritiumItemSlot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownGalaxyBuffer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.countdown)).EndInit();
             this.ResumeLayout(false);
         }
+        private System.Timers.Timer countdown;
         private System.Windows.Forms.Button btnUpdateLocation;
         private System.Windows.Forms.CheckBox checkRefuelMan;
         private System.Windows.Forms.Label textTritiumPos;

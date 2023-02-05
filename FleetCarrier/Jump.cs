@@ -38,16 +38,14 @@ namespace TeremunsCarrierAssistant.FleetCarrier {
             keyboard.Press(VirtualKeyCode.DOWN);
             keyboard.Sleep(250);
             keyboard.Press(VirtualKeyCode.SPACE);
-            keyboard.Sleep(250);
+            keyboard.Sleep(7000);
             keyboard.Press(VirtualKeyCode.VK_E);
             keyboard.LongSpace();
-            keyboard.Sleep(buffer * 2);
+            keyboard.Sleep(buffer);
             
             debugLabel.Text = "Jumping: Backing out of the carrier management screen...";
             keyboard.Press(VirtualKeyCode.BACK);
-            keyboard.Sleep(2500);
-            keyboard.Press(VirtualKeyCode.BACK);
-            
+            keyboard.Press(VirtualKeyCode.SPACE);
         }
     }
 }

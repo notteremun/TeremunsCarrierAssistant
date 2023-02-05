@@ -20,9 +20,8 @@ namespace TeremunsCarrierAssistant {
         private int currentIndex = 0;
         
         private Jump jump;
-        private Refuel refuel;
-
-        private static Timer timer;
+        //private Refuel refuel;
+        
         private static DateTime targetTime;
 
         private bool onJourney, isJumping, isRefueled = false;
@@ -37,7 +36,7 @@ namespace TeremunsCarrierAssistant {
             // Register KeyInputs
             Keyboard vInput = new Keyboard();
             jump = new Jump(vInput, textDebug, 7000);
-            refuel = new Refuel(vInput, textDebug, 1);
+            //refuel = new Refuel(vInput, textDebug, 1);
             
             UpdateJournal();
             textCurrentLocation.Text = @"Current Location: " + journalHandler.fsdJumpData.StarSystem;
@@ -54,34 +53,42 @@ namespace TeremunsCarrierAssistant {
             if (isPlayerInSystem()) currentIndex++;
             textNextJump.Text = "... " + plan.SystemName[currentIndex];
             Clipboard.SetText(plan.SystemName[currentIndex]);
-
+            
+            /*
             if(!refuelManually) refuel.Perform();
             else {
                 refuel.Perform();
             }
             isRefueled = true;
-            
+            */
+
             while (onJourney) {
                 //Check if the player is Jumping
                 if (!isJumping) {
-                    if (!isRefueled) {
+                     /*
+                     if (!isRefueled) {
+        
                         if(!refuelManually) refuel.Perform();
                         else { 
                             refuel.Perform();
                         }
                         isRefueled = true;
                     }
-                    
+                    */
+                    textCurrentLocation.Text = "Current Location: " + journalHandler.locationData.StarSystem;
                     jump.Perform();
 
                     targetTime = journalHandler.carrierJumpRequestData.DepartureTime;
+                    textDebug.Text = "Jump: " + targetTime.ToLongDateString() + " - Now: " + DateTime.Now.ToUniversalTime(); 
+                    
                     // TODO: Check if Jump is longer than 25 minutes, if replot once otherwise keep!
                     // TODO: But this is something I want to have on a different release of this tool :)
-
+                    
+                    /*
                     if (checkIfJumpBugged() && !isReplotted) {
                         //REPLOT
                         textDebug.Text = "Jump taking to long replotting...";
-                        timer.Stop();
+                        countdown.Stop();
                         jump.Perform();
                         textDebug.Text = "Jump taking to long replotting, application will freeze till jump cooldown is completed...";
                         Thread.Sleep(50000); // Jump Cooldown
@@ -92,22 +99,18 @@ namespace TeremunsCarrierAssistant {
                         targetTime = targetTime.AddMinutes(4).AddSeconds(50); // Add the cooldown
                         textDebug.Text = "Jumping to " + journalHandler.carrierJumpRequestData.SystemName + "...";
                     
-                        timer = new Timer(1000);
-                        timer.Elapsed += Timer_Elapsed;
-                        timer.Start();
+                        countdown.Start();
 
                         isReplotted = true;
                         
                         continue;
                     }
-                    
-                    
+                    */
+
                     targetTime = targetTime.AddMinutes(4).AddSeconds(50); // Add the cooldown
                     textDebug.Text = "Jumping to " + journalHandler.carrierJumpRequestData.SystemName + "...";
                     
-                    timer = new Timer(1000);
-                    timer.Elapsed += Timer_Elapsed;
-                    timer.Start();
+                    countdown.Start();
                     
                     isJumping = true;
                 }
@@ -115,25 +118,30 @@ namespace TeremunsCarrierAssistant {
         }
         
         private void Timer_Elapsed(object sender, ElapsedEventArgs e) {
-            if (DateTime.Now.ToUniversalTime() >= targetTime) {
-                timer.Stop();
-
-                currentIndex++;
-                UpdateJournal();
-                Clipboard.SetText(plan.SystemName[currentIndex]);
-
-                try {
-                    textNextJump.Text = plan.SystemName[currentIndex];
-                } catch (Exception exception) {
-                    textNextJump.Text = "";
-                    onJourney = false;
-                    // If out of bound then it is done basically, to lazy right now to add safe-checks. 
-                }
-
-                isReplotted = false;
-                isRefueled = false;
-                isJumping = false;
+            if (DateTime.Now.ToUniversalTime() < targetTime) return;
+            
+            countdown.Stop();
+            currentIndex++;
+            UpdateJournal();
+                    
+            Clipboard.SetText(plan.SystemName[currentIndex]);
+                    
+            listJumps.Items.Clear();
+            for (int i = currentIndex; i < plan.SystemName.Count; i++) {
+                listJumps.Items.Add(plan.SystemName[i]);
             }
+                
+            try {
+                textNextJump.Text = plan.SystemName[currentIndex];
+            } catch (Exception exception) {
+                textNextJump.Text = "";
+                onJourney = false;
+                // If out of bound then it is done basically, to lazy right now to add safe-checks. 
+            }
+
+            isReplotted = false;
+            isRefueled = false;
+            isJumping = false;
         }
 
         private bool isPlayerInSystem() => journalHandler.locationData.StarSystem.Equals(plan.SystemName[currentIndex]);
@@ -183,7 +191,6 @@ namespace TeremunsCarrierAssistant {
             }
             
         }
-        
         private void btnStart_Click(object sender, EventArgs e) {
             if(flightPlanLoaded) Assistant();
         }
@@ -195,9 +202,17 @@ namespace TeremunsCarrierAssistant {
         }
         private void btnUpdateLocation_Click(object sender, EventArgs e) {
             UpdateJournal();
-            
+
+            textCurrentLocation.Text = "Current Location: " + journalHandler.locationData.StarSystem;
             if (isPlayerInSystem()) currentIndex++;
             textNextJump.Text = "... " + plan.SystemName[currentIndex];
+            
+            
+            listJumps.Items.Clear();
+            for (int i = currentIndex; i < plan.SystemName.Count; i++) {
+                listJumps.Items.Add(plan.SystemName[i]);
+            }
+            
             Clipboard.SetText(plan.SystemName[currentIndex]);
         }
     }
