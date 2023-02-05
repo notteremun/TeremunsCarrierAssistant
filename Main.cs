@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 using TeremunsCarrierAssistant.Events;
@@ -33,7 +34,7 @@ namespace TeremunsCarrierAssistant {
             
             // Register KeyInputs
             Keyboard vInput = new Keyboard();
-            jump = new Jump(vInput, textDebug, 7000);
+            jump = new Jump(vInput, 7000);
             //refuel = new Refuel(vInput, textDebug, 1);
             
             UpdateJournal();
@@ -43,71 +44,74 @@ namespace TeremunsCarrierAssistant {
         }
         
         // Teremun Methods
-        private void Assistant() {
-            btnStart.Visible = false;
-            onJourney = true;
-            
-            Clipboard.SetText(plan.SystemName[currentIndex]);
+        private async void Assistant() {
+            await Task.Run(() => {
+                onJourney = true;
 
-            while (onJourney) {
-                UpdateJournal(); // Get Latest Journal
-            
-                if (isPlayerInSystem()) currentIndex++;
-                textNextJump.Text = "... " + plan.SystemName[currentIndex];
+                while (onJourney) {
+                    UpdateJournal(); // Get Latest Journal
+                
+                    if (isPlayerInSystem()) currentIndex++;
+                    textNextJump.Text = "... " + plan.SystemName[currentIndex];
 
-                //Check if the player is Jumping
-                if (!isJumping) {
-                     /*
-                     if (!isRefueled) {
-                        if(!refuelManually) refuel.Perform();
-                        else { 
-                            refuel.Perform();
+                    //Check if the player is Jumping
+                    if (!isJumping) {
+                         /*
+                         if (!isRefueled) {
+                            if(!refuelManually) refuel.Perform();
+                            else { 
+                                refuel.Perform();
+                            }
+                            isRefueled = true;
                         }
-                        isRefueled = true;
-                    }
-                    */
-                    textCurrentLocation.Text = "Current Location: " + journalHandler.locationData.StarSystem;
-                    jump.Perform();
+                        */
+                        textCurrentLocation.Text = "Current Location: " + journalHandler.locationData.StarSystem;
+                        jump.Perform();
 
-                    targetTime = journalHandler.carrierJumpRequestData.DepartureTime;
-                    textDebug.Text = "Jump: " + targetTime.ToLongDateString() + " - Now: " + DateTime.Now.ToUniversalTime(); 
-                    
-                    // TODO: Check if Jump is longer than 25 minutes, if replot once otherwise keep!
-                    // TODO: But this is something I want to have on a different release of this tool :)
-                    
-                    /*
-                    if (checkIfJumpBugged() && !isReplotted) {
-                        //REPLOT
-                        textDebug.Text = "Jump taking to long replotting...";
-                        countdown.Stop();
-                        jump.Perform();
-                        textDebug.Text = "Jump taking to long replotting, application will freeze till jump cooldown is completed...";
-                        Thread.Sleep(50000); // Jump Cooldown
-                        jump.Perform();
+                        // Here it stops working
                         
+                        UpdateJournal();
                         targetTime = journalHandler.carrierJumpRequestData.DepartureTime;
-                    
+                        textDebug.Text = "Jump: " + targetTime.ToLongDateString() + " - Now: " + DateTime.Now.ToUniversalTime(); 
+                        
+                        // TODO: Check if Jump is longer than 25 minutes, if replot once otherwise keep!
+                        // TODO: But this is something I want to have on a different release of this tool :)
+                        
+                        /*
+                        if (checkIfJumpBugged() && !isReplotted) {
+                            //REPLOT
+                            textDebug.Text = "Jump taking to long replotting...";
+                            countdown.Stop();
+                            jump.Perform();
+                            textDebug.Text = "Jump taking to long replotting, application will freeze till jump cooldown is completed...";
+                            Thread.Sleep(50000); // Jump Cooldown
+                            jump.Perform();
+                            
+                            targetTime = journalHandler.carrierJumpRequestData.DepartureTime;
+                        
+                            targetTime = targetTime.AddMinutes(4).AddSeconds(50); // Add the cooldown
+                            textDebug.Text = "Jumping to " + journalHandler.carrierJumpRequestData.SystemName + "...";
+                        
+                            countdown.Start();
+
+                            isReplotted = true;
+                            
+                            continue;
+                        }
+                        */
+
                         targetTime = targetTime.AddMinutes(4).AddSeconds(50); // Add the cooldown
                         textDebug.Text = "Jumping to " + journalHandler.carrierJumpRequestData.SystemName + "...";
-                    
-                        countdown.Start();
-
-                        isReplotted = true;
                         
-                        continue;
+                        countdown.Start();
+                        
+                        isJumping = true;
+                    } else {
+                        textDebug.Text = "Jump: " + targetTime.ToLongDateString() + " - Now: " + DateTime.Now.ToUniversalTime(); 
                     }
-                    */
-
-                    targetTime = targetTime.AddMinutes(4).AddSeconds(50); // Add the cooldown
-                    textDebug.Text = "Jumping to " + journalHandler.carrierJumpRequestData.SystemName + "...";
-                    
-                    countdown.Start();
-                    
-                    isJumping = true;
-                } else {
-                    textDebug.Text = "Jump: " + targetTime.ToLongDateString() + " - Now: " + DateTime.Now.ToUniversalTime(); 
                 }
-            }
+            });
+            
         }
         
         private void Timer_Elapsed(object sender, ElapsedEventArgs e) {
@@ -158,7 +162,7 @@ namespace TeremunsCarrierAssistant {
         }
 
         private void UpdateCarrierOperations() {
-            jump = new Jump(jump.keyboard, textDebug, (int)numUpDownGalaxyBuffer.Value);
+            jump = new Jump(jump.keyboard, (int)numUpDownGalaxyBuffer.Value);
           //  refuel = new Refuel(refuel.keyboard, textDebug, (int)tritiumItemSlot.Value, 0);
         }
         
@@ -179,13 +183,11 @@ namespace TeremunsCarrierAssistant {
             
         }
         private void btnStart_Click(object sender, EventArgs e) {
-            if(flightPlanLoaded) Assistant();
-        }
-        
-        private void galaxyBuffer_ValueChanged(object sender, EventArgs e) => UpdateCarrierOperations();
-        private void tritiumItemSlot_ValueChanged(object sender, EventArgs e) => UpdateCarrierOperations();
-        private void checkRefuelMan_CheckedChanged(object sender, EventArgs e) {
-            refuelManually = checkRefuelMan.Checked;
+            if (flightPlanLoaded) {
+                btnStart.Visible = false;
+                Clipboard.SetText(plan.SystemName[currentIndex]);
+                Assistant();
+            }
         }
         private void btnUpdateLocation_Click(object sender, EventArgs e) {
             UpdateJournal();
@@ -201,6 +203,19 @@ namespace TeremunsCarrierAssistant {
             }
             
             Clipboard.SetText(plan.SystemName[currentIndex]);
+        }
+        private void btnJourneySwitch_Click(object sender, EventArgs e) {
+            isJumping = true;
+            countdown.Start();
+            btnStart.Visible = false;
+            Clipboard.SetText(plan.SystemName[currentIndex]);
+            Assistant();
+        }
+        
+        private void galaxyBuffer_ValueChanged(object sender, EventArgs e) => UpdateCarrierOperations();
+        private void tritiumItemSlot_ValueChanged(object sender, EventArgs e) => UpdateCarrierOperations();
+        private void checkRefuelMan_CheckedChanged(object sender, EventArgs e) {
+            refuelManually = checkRefuelMan.Checked;
         }
     }
 }

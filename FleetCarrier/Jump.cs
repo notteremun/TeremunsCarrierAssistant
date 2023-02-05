@@ -6,12 +6,10 @@ using Label = System.Windows.Forms.Label;
 namespace TeremunsCarrierAssistant.FleetCarrier {
     public class Jump {
         public readonly Keyboard keyboard;
-        private Label debugLabel;
         private int buffer;
         
-        public Jump(Keyboard keyboard, Label debugLabel, int buffer) {
+        public Jump(Keyboard keyboard, int buffer) {
             this.keyboard = keyboard;
-            this.debugLabel = debugLabel;
             this.buffer = buffer;
         }
 

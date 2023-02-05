@@ -43,6 +43,7 @@
             this.checkRefuelMan = new System.Windows.Forms.CheckBox();
             this.btnUpdateLocation = new System.Windows.Forms.Button();
             this.countdown = new System.Timers.Timer();
+            this.btnJourneySwitch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tritiumItemSlot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownGalaxyBuffer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.countdown)).BeginInit();
@@ -246,12 +247,25 @@
             this.countdown.SynchronizingObject = this;
             this.countdown.Elapsed += new System.Timers.ElapsedEventHandler(this.Timer_Elapsed);
             // 
+            // btnJourneySwitch
+            // 
+            this.btnJourneySwitch.Font = new System.Drawing.Font("Montserrat Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnJourneySwitch.Location = new System.Drawing.Point(98, 259);
+            this.btnJourneySwitch.Margin = new System.Windows.Forms.Padding(2);
+            this.btnJourneySwitch.Name = "btnJourneySwitch";
+            this.btnJourneySwitch.Size = new System.Drawing.Size(113, 30);
+            this.btnJourneySwitch.TabIndex = 13;
+            this.btnJourneySwitch.Text = "Journey Switch";
+            this.btnJourneySwitch.UseVisualStyleBackColor = true;
+            this.btnJourneySwitch.Click += new System.EventHandler(this.btnJourneySwitch_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(707, 318);
+            this.Controls.Add(this.btnJourneySwitch);
             this.Controls.Add(this.btnUpdateLocation);
             this.Controls.Add(this.checkRefuelMan);
             this.Controls.Add(this.textGalaxyMapBuffer);
@@ -276,6 +290,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.countdown)).EndInit();
             this.ResumeLayout(false);
         }
+        private System.Windows.Forms.Button btnJourneySwitch;
         private System.Timers.Timer countdown;
         private System.Windows.Forms.Button btnUpdateLocation;
         private System.Windows.Forms.CheckBox checkRefuelMan;
