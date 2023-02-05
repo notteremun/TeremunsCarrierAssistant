@@ -13,7 +13,7 @@ namespace TeremunsCarrierAssistant.FleetCarrier {
             this.buffer = buffer;
         }
 
-        public void Perform() {
+        public void Perform(string systemName) {
             keyboard.Press(VirtualKeyCode.VK_4);       // Open right panel
             keyboard.Sleep(1000);
             
@@ -27,7 +27,7 @@ namespace TeremunsCarrierAssistant.FleetCarrier {
             
             keyboard.Press(VirtualKeyCode.UP);         // Navigate to the search bar and paste content
             keyboard.Press(VirtualKeyCode.SPACE);
-            keyboard.PasteClipboard();
+            keyboard.PasteClipboard(systemName);
             keyboard.Sleep(250);
             keyboard.Press(VirtualKeyCode.DOWN);
             keyboard.Sleep(250);

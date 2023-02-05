@@ -44,6 +44,15 @@ namespace TeremunsCarrierAssistant {
             vInput.Keyboard.TextEntry(Clipboard.GetText());
             vInput.Keyboard.Sleep(250);
         }
+        public void PasteClipboard(string input) {
+            IntPtr targetWindow = FindWindow(null, "Elite - Dangerous (Client)");
+            SetForegroundWindow(targetWindow);
+
+            vInput.Keyboard.Sleep(1000);
+            
+            vInput.Keyboard.TextEntry(input);
+            vInput.Keyboard.Sleep(250);
+        }
         
         public void Sleep(int ms) {
             vInput.Keyboard.Sleep(ms);

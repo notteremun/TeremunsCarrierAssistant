@@ -66,10 +66,9 @@ namespace TeremunsCarrierAssistant {
                         }
                         */
                         textCurrentLocation.Text = "Current Location: " + journalHandler.locationData.StarSystem;
-                        jump.Perform();
+                        textDebug.Text = "Jumping: This carrier will now try to jump to " + plan.SystemName[currentIndex] + "...";
+                        jump.Perform(plan.SystemName[currentIndex]);
 
-                        // Here it stops working
-                        
                         UpdateJournal();
                         targetTime = journalHandler.carrierJumpRequestData.DepartureTime;
                         textDebug.Text = "Jump: " + targetTime.ToLongDateString() + " - Now: " + DateTime.Now.ToUniversalTime(); 
@@ -107,7 +106,7 @@ namespace TeremunsCarrierAssistant {
                         
                         isJumping = true;
                     } else {
-                        textDebug.Text = "Jump: " + targetTime.ToLongDateString() + " - Now: " + DateTime.Now.ToUniversalTime(); 
+                        textDebug.Text = "Jump: " + targetTime.ToLongTimeString() + " - Now: " + DateTime.Now.ToUniversalTime(); 
                     }
                 }
             });
@@ -120,9 +119,7 @@ namespace TeremunsCarrierAssistant {
             countdown.Stop();
             currentIndex++;
             UpdateJournal();
-                    
-            Clipboard.SetText(plan.SystemName[currentIndex]);
-                    
+
             listJumps.Items.Clear();
             for (int i = currentIndex; i < plan.SystemName.Count; i++) {
                 listJumps.Items.Add(plan.SystemName[i]);
@@ -205,10 +202,10 @@ namespace TeremunsCarrierAssistant {
             Clipboard.SetText(plan.SystemName[currentIndex]);
         }
         private void btnJourneySwitch_Click(object sender, EventArgs e) {
+            UpdateJournal();
             isJumping = true;
             countdown.Start();
             btnStart.Visible = false;
-            Clipboard.SetText(plan.SystemName[currentIndex]);
             Assistant();
         }
         
