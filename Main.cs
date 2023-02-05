@@ -1,12 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Timers;
 using System.Windows.Forms;
 using TeremunsCarrierAssistant.Events;
 using TeremunsCarrierAssistant.FleetCarrier;
-using Timer = System.Timers.Timer;
 
 namespace TeremunsCarrierAssistant {
     public partial class Main : Form {
@@ -46,28 +44,21 @@ namespace TeremunsCarrierAssistant {
         
         // Teremun Methods
         private void Assistant() {
-            btnStart.Enabled = false;
+            btnStart.Visible = false;
             onJourney = true;
-            UpdateJournal(); // Get Latest Journal
             
-            if (isPlayerInSystem()) currentIndex++;
-            textNextJump.Text = "... " + plan.SystemName[currentIndex];
             Clipboard.SetText(plan.SystemName[currentIndex]);
-            
-            /*
-            if(!refuelManually) refuel.Perform();
-            else {
-                refuel.Perform();
-            }
-            isRefueled = true;
-            */
 
             while (onJourney) {
+                UpdateJournal(); // Get Latest Journal
+            
+                if (isPlayerInSystem()) currentIndex++;
+                textNextJump.Text = "... " + plan.SystemName[currentIndex];
+
                 //Check if the player is Jumping
                 if (!isJumping) {
                      /*
                      if (!isRefueled) {
-        
                         if(!refuelManually) refuel.Perform();
                         else { 
                             refuel.Perform();
@@ -113,6 +104,8 @@ namespace TeremunsCarrierAssistant {
                     countdown.Start();
                     
                     isJumping = true;
+                } else {
+                    textDebug.Text = "Jump: " + targetTime.ToLongDateString() + " - Now: " + DateTime.Now.ToUniversalTime(); 
                 }
             }
         }
@@ -133,8 +126,9 @@ namespace TeremunsCarrierAssistant {
                 
             try {
                 textNextJump.Text = plan.SystemName[currentIndex];
-            } catch (Exception exception) {
-                textNextJump.Text = "";
+            } catch (Exception ex) {
+                textNextJump.Text = ex.Message;
+                btnStart.Visible = true;
                 onJourney = false;
                 // If out of bound then it is done basically, to lazy right now to add safe-checks. 
             }
@@ -145,15 +139,8 @@ namespace TeremunsCarrierAssistant {
         }
 
         private bool isPlayerInSystem() => journalHandler.locationData.StarSystem.Equals(plan.SystemName[currentIndex]);
+        private bool checkIfJumpBugged() => targetTime > DateTime.UtcNow.AddMinutes(25).AddSeconds(30);
 
-        private bool checkIfJumpBugged() {
-            DateTime test = DateTime.UtcNow.AddMinutes(25).AddSeconds(30);
-
-            return (targetTime > test);
-            // targetTime > test is bugged -> true???
-            // targetTime < test is not bugged -> false???
-        }
-        
         private void UpdateJournal() {
             DirectoryInfo dirInfo = new DirectoryInfo($"{currentUserPath}\\Saved Games\\Frontier Developments\\Elite Dangerous\\");
             FileInfo file = (from f in dirInfo.GetFiles("*.log") orderby f.LastWriteTime descending select f).First();
