@@ -26,6 +26,7 @@ namespace TeremunsCarrierAssistant {
         private static DateTime targetTime;
 
         private bool onJourney, isJumping, isRefueled = false;
+        private bool isReplotted = false;
         private bool refuelManually = true;
 
 
@@ -78,13 +79,13 @@ namespace TeremunsCarrierAssistant {
                     // TODO: Check if Jump is longer than 25 minutes, if replot once otherwise keep!
                     // TODO: But this is something I want to have on a different release of this tool :)
 
-                    if (checkIfJumpBugged()) {
+                    if (checkIfJumpBugged() && !isReplotted) {
                         //REPLOT
                         textDebug.Text = "Jump taking to long replotting...";
                         timer.Stop();
                         jump.Perform();
-                        textDebug.Text = "Jump taking to long replotting...";
-                        System.Threading.Thread.Sleep(50000);
+                        textDebug.Text = "Jump taking to long replotting, application will freeze till jump cooldown is completed...";
+                        Thread.Sleep(50000); // Jump Cooldown
                         jump.Perform();
                         
                         targetTime = journalHandler.carrierJumpRequestData.DepartureTime;
@@ -95,8 +96,10 @@ namespace TeremunsCarrierAssistant {
                         timer = new Timer(1000);
                         timer.Elapsed += Timer_Elapsed;
                         timer.Start();
-                    
-                        isJumping = true;
+
+                        isReplotted = true;
+                        
+                        continue;
                     }
                     
                     
@@ -127,7 +130,8 @@ namespace TeremunsCarrierAssistant {
                     onJourney = false;
                     // If out of bound then it is done basically, to lazy right now to add safe-checks. 
                 }
-                
+
+                isReplotted = false;
                 isRefueled = false;
                 isJumping = false;
             }
