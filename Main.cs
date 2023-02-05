@@ -37,7 +37,7 @@ namespace TeremunsCarrierAssistant {
             // Register KeyInputs
             Keyboard vInput = new Keyboard();
             jump = new Jump(vInput, textDebug, 7000);
-           // refuel = new Refuel(vInput, textDebug, 1, 0);
+            refuel = new Refuel(vInput, textDebug, 1);
             
             UpdateJournal();
             textCurrentLocation.Text = @"Current Location: " + journalHandler.fsdJumpData.StarSystem;
@@ -52,12 +52,12 @@ namespace TeremunsCarrierAssistant {
             UpdateJournal(); // Get Latest Journal
             
             if (isPlayerInSystem()) currentIndex++;
+            textNextJump.Text = "... " + plan.SystemName[currentIndex];
             Clipboard.SetText(plan.SystemName[currentIndex]);
 
             if(!refuelManually) refuel.Perform();
             else {
-               // refuel.fuelAmount = Convert.ToInt32(plan.FuelUsed[currentIndex]);
-               // refuel.Perform();
+                refuel.Perform();
             }
             isRefueled = true;
             
@@ -66,9 +66,8 @@ namespace TeremunsCarrierAssistant {
                 if (!isJumping) {
                     if (!isRefueled) {
                         if(!refuelManually) refuel.Perform();
-                        else {
-                           // refuel.fuelAmount = Convert.ToInt32(plan.FuelUsed[currentIndex]);
-                          //  refuel.Perform();
+                        else { 
+                            refuel.Perform();
                         }
                         isRefueled = true;
                     }
@@ -177,6 +176,7 @@ namespace TeremunsCarrierAssistant {
                 foreach (string system in plan.SystemName.ToArray()) listJumps.Items.Add(system);
 
                 textDebug.Text = "Waiting for activating the assistant...";
+                textNextJump.Text = "... " + plan.SystemName[currentIndex];
                 flightPlanLoaded = true;
             } catch (Exception) {
                 //ignore
@@ -192,6 +192,13 @@ namespace TeremunsCarrierAssistant {
         private void tritiumItemSlot_ValueChanged(object sender, EventArgs e) => UpdateCarrierOperations();
         private void checkRefuelMan_CheckedChanged(object sender, EventArgs e) {
             refuelManually = checkRefuelMan.Checked;
+        }
+        private void btnUpdateLocation_Click(object sender, EventArgs e) {
+            UpdateJournal();
+            
+            if (isPlayerInSystem()) currentIndex++;
+            textNextJump.Text = "... " + plan.SystemName[currentIndex];
+            Clipboard.SetText(plan.SystemName[currentIndex]);
         }
     }
 }

@@ -41,6 +41,7 @@
             this.textGalaxyMapBuffer = new System.Windows.Forms.Label();
             this.numUpDownGalaxyBuffer = new System.Windows.Forms.NumericUpDown();
             this.checkRefuelMan = new System.Windows.Forms.CheckBox();
+            this.btnUpdateLocation = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tritiumItemSlot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownGalaxyBuffer)).BeginInit();
             this.SuspendLayout();
@@ -226,12 +227,25 @@
             this.checkRefuelMan.UseVisualStyleBackColor = true;
             this.checkRefuelMan.CheckedChanged += new System.EventHandler(this.checkRefuelMan_CheckedChanged);
             // 
+            // btnUpdateLocation
+            // 
+            this.btnUpdateLocation.Font = new System.Drawing.Font("Montserrat Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnUpdateLocation.Location = new System.Drawing.Point(7, 259);
+            this.btnUpdateLocation.Margin = new System.Windows.Forms.Padding(2);
+            this.btnUpdateLocation.Name = "btnUpdateLocation";
+            this.btnUpdateLocation.Size = new System.Drawing.Size(87, 30);
+            this.btnUpdateLocation.TabIndex = 12;
+            this.btnUpdateLocation.Text = "Update";
+            this.btnUpdateLocation.UseVisualStyleBackColor = true;
+            this.btnUpdateLocation.Click += new System.EventHandler(this.btnUpdateLocation_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(707, 318);
+            this.Controls.Add(this.btnUpdateLocation);
             this.Controls.Add(this.checkRefuelMan);
             this.Controls.Add(this.textGalaxyMapBuffer);
             this.Controls.Add(this.numUpDownGalaxyBuffer);
@@ -254,6 +268,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownGalaxyBuffer)).EndInit();
             this.ResumeLayout(false);
         }
+        private System.Windows.Forms.Button btnUpdateLocation;
         private System.Windows.Forms.CheckBox checkRefuelMan;
         private System.Windows.Forms.Label textTritiumPos;
         private System.Windows.Forms.Label textGalaxyMapBuffer;

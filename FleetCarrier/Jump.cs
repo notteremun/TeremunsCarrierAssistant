@@ -16,21 +16,21 @@ namespace TeremunsCarrierAssistant.FleetCarrier {
         }
 
         public void Perform() {
-            debugLabel.Text = "Opening the right panel...";
+            debugLabel.Text = "Jumping: Opening the right panel...";
             keyboard.Press(VirtualKeyCode.VK_4);       // Open right panel
             keyboard.Sleep(1000);
             
-            debugLabel.Text = "Opening the the carrier mangement panel...";
+            debugLabel.Text = "Jumping: Opening the the carrier mangement panel...";
             keyboard.Press(VirtualKeyCode.SPACE);      // Opens Carrier Management
             keyboard.Sleep(7000);
             
-            debugLabel.Text = "Navigating to Navigation...";
+            debugLabel.Text = "Jumping: Navigating to Navigation...";
             keyboard.Press(VirtualKeyCode.VK_S);       // Opens Navigation Panel
             keyboard.Press(VirtualKeyCode.SPACE);
             keyboard.Press(VirtualKeyCode.SPACE);
             keyboard.Sleep(buffer);
             
-            debugLabel.Text = "Searching and plotting for the system...";
+            debugLabel.Text = "Jumping: Searching and plotting for the system...";
             keyboard.Press(VirtualKeyCode.UP);         // Navigate to the search bar and paste content
             keyboard.Press(VirtualKeyCode.SPACE);
             keyboard.PasteClipboard();
@@ -43,7 +43,7 @@ namespace TeremunsCarrierAssistant.FleetCarrier {
             keyboard.LongSpace();
             keyboard.Sleep(buffer * 2);
             
-            debugLabel.Text = "Backing out of the carrier mangement screen...";
+            debugLabel.Text = "Jumping: Backing out of the carrier management screen...";
             keyboard.Press(VirtualKeyCode.BACK);
             keyboard.Sleep(2500);
             keyboard.Press(VirtualKeyCode.BACK);
