@@ -10,6 +10,15 @@ using TeremunsCarrierAssistant.FleetCarrier;
 
 namespace TeremunsCarrierAssistant {
     public partial class Main : Form {
+        /*
+            TODO: Add a registry key to store currentIndex in case of a break or failure of the software
+            TODO: Add a short sound clip before accessing the player controlls to prevent glitches
+            TODO: Make fueling working
+            TODO: Resize Form for better quality in case of overlay
+            TODO: Cleanup
+        */
+        
+        
         private readonly FlightPlan plan = new FlightPlan();
         private bool flightPlanLoaded = false;
         
@@ -191,7 +200,6 @@ namespace TeremunsCarrierAssistant {
             UpdateJournal();
 
             textCurrentLocation.Text = "Current Location: " + journalHandler.locationData.StarSystem;
-            if (isPlayerInSystem()) currentIndex++;
             textNextJump.Text = "... " + plan.SystemName[currentIndex];
             
             
