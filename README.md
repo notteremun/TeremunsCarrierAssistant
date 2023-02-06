@@ -9,4 +9,8 @@
 > \
 > **>>** Use **RASIS** on your own risk. **<<**
 
+Literally me during testing this program:
+\
+![alt text](https://media.discordapp.net/attachments/935099841833484318/1071968720274079814/image0.gif)
+
 More info will be added soon!
