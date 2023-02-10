@@ -64,6 +64,9 @@
         <Compile Include="Main.Designer.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <EmbeddedResource Include="Main.en-US.resx">
+          <DependentUpon>Main.cs</DependentUpon>
+        </EmbeddedResource>
         <EmbeddedResource Include="Main.resx">
           <DependentUpon>Main.cs</DependentUpon>
         </EmbeddedResource>
@@ -92,6 +95,14 @@
     </ItemGroup>
     <ItemGroup>
       <Content Include="README.md" />
+      <Content Include="Resources\appBackground.png" />
+      <Content Include="Resources\GsacbotLogo.png" />
+      <Content Include="shutdown_error.wav" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="dial_chevron_encode.wav">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

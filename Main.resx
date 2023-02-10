@@ -117,10 +117,397 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="textNextJump.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="textDebug.Size" type="System.Drawing.Size, System.Drawing">
+    <value>506, 18</value>
+  </data>
+  <data name="galaxyMapLag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 17</value>
+  </data>
+  <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 15</value>
+  </data>
+  <data name="btnUpdateLocation.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Montserrat Medium, 12px</value>
+  </data>
+  <data name="&gt;&gt;btnOpenFileDialog.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="textGalaxyMapBuffer.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="galaxyMapLag.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="textDebug.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="&gt;&gt;listJumps.Name" xml:space="preserve">
+    <value>listJumps</value>
+  </data>
+  <data name="&gt;&gt;textCurrentLocation.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;galaxyMapLag.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;textTritiumPos.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="listJumps.ItemHeight" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;textNextJump.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnOpenFileDialog.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Montserrat Medium, 12px</value>
+  </data>
+  <data name="textTritiumPos.Location" type="System.Drawing.Point, System.Drawing">
+    <value>66, 273</value>
+  </data>
+  <data name="&gt;&gt;textNextJump.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;btnOpenFileDialog.Name" xml:space="preserve">
+    <value>btnOpenFileDialog</value>
+  </data>
+  <data name="textNextJump.Text" xml:space="preserve">
+    <value>... ???</value>
+  </data>
+  <data name="listJumps.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 285</value>
+  </data>
+  <data name="textNextJump.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="&gt;&gt;btnUpdateLocation.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnOpenFileDialog.Location" type="System.Drawing.Point, System.Drawing">
+    <value>519, 350</value>
+  </data>
+  <data name="btnStart.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Montserrat Medium, 12px</value>
+  </data>
+  <data name="checkRefuelMan.Text" xml:space="preserve">
+    <value>Refuel Manually (recommended)</value>
+  </data>
+  <data name="&gt;&gt;listJumps.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listJumps.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="textGalaxyMapBuffer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="&gt;&gt;textGalaxyMapBuffer.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="checkRefuelMan.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;textTritiumPos.Name" xml:space="preserve">
+    <value>textTritiumPos</value>
+  </data>
+  <data name="textCurrentLocation.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="listJumps.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Montserrat Medium, 8.25pt</value>
+  </data>
+  <data name="textTritiumPos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 17</value>
+  </data>
+  <data name="tritiumPosition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 17</value>
+  </data>
+  <data name="&gt;&gt;tritiumPosition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 37</value>
+  </data>
+  <data name="textDebug.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Montserrat Medium, 8pt</value>
+  </data>
+  <data name="&gt;&gt;btnUpdateLocation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="textDebug.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 374</value>
+  </data>
+  <data name="&gt;&gt;countdown.Name" xml:space="preserve">
+    <value>countdown</value>
+  </data>
+  <data name="&gt;&gt;selectCarrierRoute.Name" xml:space="preserve">
+    <value>selectCarrierRoute</value>
+  </data>
+  <data name="&gt;&gt;btnStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnUpdateLocation.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="textCurrentLocation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 8</value>
+  </data>
+  <data name="checkRefuelMan.Size" type="System.Drawing.Size, System.Drawing">
+    <value>213, 18</value>
+  </data>
+  <data name="&gt;&gt;textNextJump.Name" xml:space="preserve">
+    <value>textNextJump</value>
+  </data>
+  <data name="btnStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>519, 309</value>
+  </data>
+  <data name="&gt;&gt;btnOpenFileDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;selectCarrierRoute.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="textNextJump.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Montserrat Medium, 12pt</value>
+  </data>
+  <data name="btnOpenFileDialog.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="&gt;&gt;textGalaxyMapBuffer.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="textTritiumPos.Text" xml:space="preserve">
+    <value>Tritium Position</value>
+  </data>
+  <data name="tritiumPosition.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Montserrat SemiBold, 8.25pt</value>
+  </data>
+  <data name="&gt;&gt;btnStart.Name" xml:space="preserve">
+    <value>btnStart</value>
+  </data>
+  <data name="textCurrentLocation.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="textTritiumPos.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Montserrat Medium, 8pt</value>
+  </data>
+  <data name="&gt;&gt;btnUpdateLocation.Name" xml:space="preserve">
+    <value>btnUpdateLocation</value>
+  </data>
+  <data name="&gt;&gt;btnUpdateLocation.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;countdown.Type" xml:space="preserve">
+    <value>System.Timers.Timer, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="textDebug.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;textDebug.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="checkRefuelMan.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 319</value>
+  </data>
+  <data name="textTritiumPos.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="btnUpdateLocation.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="textTritiumPos.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="textCurrentLocation.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;tritiumPosition.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="textNextJump.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 33</value>
+  </data>
+  <data name="btnUpdateLocation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 30</value>
+  </data>
+  <data name="&gt;&gt;textTritiumPos.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnUpdateLocation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 342</value>
+  </data>
+  <data name="&gt;&gt;textDebug.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="btnStart.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="&gt;&gt;galaxyMapLag.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textDebug.Name" xml:space="preserve">
+    <value>textDebug</value>
+  </data>
+  <data name="textGalaxyMapBuffer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>66, 296</value>
+  </data>
+  <data name="textCurrentLocation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>506, 33</value>
+  </data>
+  <data name="listJumps.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;textDebug.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnStart.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="tritiumPosition.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="textCurrentLocation.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Montserrat Medium, 12pt</value>
+  </data>
+  <data name="&gt;&gt;textGalaxyMapBuffer.Name" xml:space="preserve">
+    <value>textGalaxyMapBuffer</value>
+  </data>
+  <data name="btnOpenFileDialog.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tritiumPosition.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="textCurrentLocation.Text" xml:space="preserve">
+    <value>Current Location: ???</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="textNextJump.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="textDebug.Text" xml:space="preserve">
+    <value>Waiting for a flightplan...</value>
+  </data>
+  <data name="&gt;&gt;textCurrentLocation.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;textTritiumPos.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="checkRefuelMan.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Montserrat Medium, 8.25pt</value>
+  </data>
+  <data name="btnStart.Text" xml:space="preserve">
+    <value>Enage Jumps</value>
+  </data>
+  <data name="&gt;&gt;listJumps.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnOpenFileDialog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 37</value>
+  </data>
+  <data name="&gt;&gt;checkRefuelMan.Name" xml:space="preserve">
+    <value>checkRefuelMan</value>
+  </data>
+  <data name="&gt;&gt;textCurrentLocation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnUpdateLocation.Text" xml:space="preserve">
+    <value>Update Location</value>
+  </data>
+  <data name="listJumps.Location" type="System.Drawing.Point, System.Drawing">
+    <value>519, 8</value>
+  </data>
+  <data name="&gt;&gt;textNextJump.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="textNextJump.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 41</value>
+  </data>
+  <data name="&gt;&gt;checkRefuelMan.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tritiumPosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 273</value>
+  </data>
+  <data name="btnOpenFileDialog.Text" xml:space="preserve">
+    <value>Select Route</value>
+  </data>
+  <data name="&gt;&gt;checkRefuelMan.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;galaxyMapLag.Name" xml:space="preserve">
+    <value>galaxyMapLag</value>
+  </data>
+  <data name="galaxyMapLag.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 296</value>
+  </data>
+  <data name="textGalaxyMapBuffer.Text" xml:space="preserve">
+    <value>Galaxy Map Buffer (s)</value>
+  </data>
+  <data name="textGalaxyMapBuffer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 17</value>
+  </data>
+  <data name="&gt;&gt;tritiumPosition.Name" xml:space="preserve">
+    <value>tritiumPosition</value>
+  </data>
+  <data name="&gt;&gt;checkRefuelMan.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>707, 401</value>
+  </data>
+  <data name="&gt;&gt;textGalaxyMapBuffer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnStart.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;btnOpenFileDialog.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="galaxyMapLag.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Montserrat SemiBold, 8.25pt</value>
+  </data>
+  <data name="textGalaxyMapBuffer.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Montserrat Medium, 8pt</value>
+  </data>
+  <data name="&gt;&gt;textCurrentLocation.Name" xml:space="preserve">
+    <value>textCurrentLocation</value>
+  </data>
+  <data name="$this.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="&gt;&gt;galaxyMapLag.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnStart.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <metadata name="countdown.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="selectCarrierRoute.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>123, 17</value>
   </metadata>
-  <metadata name="countdown.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>en-US</value>
   </metadata>
 </root>
