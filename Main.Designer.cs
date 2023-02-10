@@ -1,4 +1,4 @@
-﻿namespace TeremunsCarrierAssistant
+namespace TeremunsCarrierAssistant
 {
     partial class Main
     {
