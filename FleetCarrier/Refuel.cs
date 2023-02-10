@@ -6,16 +6,14 @@ namespace TeremunsCarrierAssistant.FleetCarrier {
     public class Refuel {
         public readonly Keyboard keyboard;
         private int tritiumLocation;
-        private Label debugLabel;
-        
-        public Refuel(Keyboard keyboard, Label debugLabel, int tritiumLocation) {
+
+        public Refuel(Keyboard keyboard, int tritiumLocation) {
             this.keyboard = keyboard;
-            this.debugLabel = debugLabel;
             this.tritiumLocation = tritiumLocation;
         }
         
         
-        public void Perform() {
+        public void Perform(int neededTritium) {
             keyboard.Press(VirtualKeyCode.VK_4); // Open right panel
             keyboard.Sleep(1000);
 
@@ -32,7 +30,7 @@ namespace TeremunsCarrierAssistant.FleetCarrier {
             
             for (int i = 0; i < tritiumLocation; i++) keyboard.Press(VirtualKeyCode.VK_S);
             
-            for (int i = 0; i < 250; i++) {
+            for (int i = 0; i < neededTritium; i++) {
                 keyboard.Press(VirtualKeyCode.VK_A);
             }
             keyboard.Press(VirtualKeyCode.VK_S);

@@ -6,15 +6,15 @@ using System.Windows.Forms;
 namespace TeremunsCarrierAssistant {
     public class FlightPlan {
 
-        public readonly List<string> SystemName = new List<string>(); 
-        public readonly List<double> Distance = new List<double>(); 
+        public readonly List<string> SystemName        = new List<string>(); 
+        public readonly List<double> Distance          = new List<double>(); 
         public readonly List<double> DistanceRemaining = new List<double>(); 
-        public readonly List<int> TritiumTank = new List<int>(); 
-        public readonly List<int> TritiumMarket = new List<int>(); 
-        public readonly List<int> FuelUsed = new List<int>(); 
-        public readonly List<string> IcyRing = new List<string>(); 
-        public readonly List<string> Pristine = new List<string>(); 
-        public readonly List<int> RestockTritium = new List<int>(); 
+        public readonly List<int>    TritiumTank       = new List<int>(); 
+        public readonly List<int>    TritiumMarket     = new List<int>(); 
+        public readonly List<int>    FuelUsed          = new List<int>(); 
+        public readonly List<string> IcyRing           = new List<string>(); 
+        public readonly List<string> Pristine          = new List<string>(); 
+        public readonly List<int>    RestockTritium    = new List<int>(); 
 
         public void ConvertFlightPlan(OpenFileDialog file) {
             using(var reader = new StreamReader(file.FileName)) {

@@ -14,6 +14,7 @@ namespace TeremunsCarrierAssistant.FleetCarrier {
         }
 
         public void Perform(string systemName) {
+            keyboard.Sleep(2000);
             keyboard.Press(VirtualKeyCode.VK_4);       // Open right panel
             keyboard.Sleep(1000);
             
