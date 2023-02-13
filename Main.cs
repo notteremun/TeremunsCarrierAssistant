@@ -56,13 +56,14 @@ namespace TeremunsCarrierAssistant {
                     //Check if the player is Jumping
                     if (isJumping) continue;
                     
+                    /*
                     if (!isRefueled) {
                         if (plan.FuelUsed[currentIndex] > 0)
                             if (!refuelManually) refuel.Perform(plan.FuelUsed[currentIndex], Convert.ToInt32(tritiumPosition.Value));
                             else isRefueled = true;
                         else isRefueled = true;
 
-                    }
+                    }*/
                         
                     PlayControlSound("error_start.wav");
                     
