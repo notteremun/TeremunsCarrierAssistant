@@ -5,6 +5,9 @@ using Label = System.Windows.Forms.Label;
 
 namespace TeremunsCarrierAssistant.FleetCarrier {
     public class Jump {
+        
+        //TODO: Move this into a single class with the Refuel.cs
+        
         public readonly Keyboard keyboard;
         private int buffer;
         

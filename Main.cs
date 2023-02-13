@@ -6,17 +6,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
+using Microsoft.Win32;
 using TeremunsCarrierAssistant.Events;
 using TeremunsCarrierAssistant.FleetCarrier;
-using TeremunsCarrierAssistant.Properties;
 
 namespace TeremunsCarrierAssistant {
     public partial class Main : Form {
         private readonly FlightPlan plan = new FlightPlan();
         private bool flightPlanLoaded = false;
         
+        private readonly RegistryKey _saveManager;
         private JournalHandler journalHandler;
-        private readonly OpenFileDialog openFileDialog;
         private readonly string currentUserPath;
         
         private int currentIndex = 0;
@@ -37,12 +37,10 @@ namespace TeremunsCarrierAssistant {
             // Register KeyInputs
             Keyboard vInput = new Keyboard();
             jump = new Jump(vInput, 7000);
-            refuel = new Refuel(vInput, 1);
+            refuel = new Refuel(vInput);
             
             UpdateJournal();
             textCurrentLocation.Text = @"Current Location: " + journalHandler.locationData.StarSystem;
-            
-            openFileDialog = selectCarrierRoute;
         }
         
         // Teremun Methods
@@ -59,12 +57,15 @@ namespace TeremunsCarrierAssistant {
                     if (isJumping) continue;
                     
                     if (!isRefueled) {
-                        if(!refuelManually) refuel.Perform(plan.RestockTritium[currentIndex]);
-                        else { 
-                            isRefueled = true;
-                        }
+                        if (plan.FuelUsed[currentIndex] > 0)
+                            if (!refuelManually) refuel.Perform(plan.FuelUsed[currentIndex], Convert.ToInt32(tritiumPosition.Value));
+                            else isRefueled = true;
+                        else isRefueled = true;
+
                     }
                         
+                    PlayControlSound("error_start.wav");
+                    
                     textCurrentLocation.Text = "Current Location: " + journalHandler.locationData.StarSystem;
                     textDebug.Text = "Jumping: This carrier will now try to jump to " + plan.SystemName[currentIndex] + "...";
                     jump.Perform(plan.SystemName[currentIndex]);
@@ -104,10 +105,10 @@ namespace TeremunsCarrierAssistant {
             
         }
 
-        private void PlayControlSound() {
+        private void PlayControlSound(string filename) {
             SoundPlayer player = new SoundPlayer();
-            player.SoundLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"./../../dial_chevron_encode.wav");
-            player.Play();
+            player.SoundLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"./../../" + filename);
+            player.PlaySync();
         }
         
         private void Timer_Elapsed(object sender, ElapsedEventArgs e) {
@@ -153,30 +154,34 @@ namespace TeremunsCarrierAssistant {
             }
 
             journalHandler = new JournalHandler(copy);
+
+            if (!onJourney)
+            {
+                PlayControlSound("dial_chevron_beep2.wav");
+            }
         }
 
         private void UpdateCarrierOperations() {
             jump = new Jump(jump.keyboard, (int)galaxyMapLag.Value);
-            refuel = new Refuel(refuel.keyboard, (int)tritiumPosition.Value);
+            refuel = new Refuel(refuel.keyboard);
         }
         
         // Form Event Handlers
         private void btnOpenFileDialog_Click(object sender, EventArgs e) {
-            try {
-                openFileDialog.ShowDialog(this);
-                plan.ConvertFlightPlan(openFileDialog);
+            selectCarrierRoute.ShowDialog(this);
+            plan.ConvertFlightPlan(selectCarrierRoute);
 
-                foreach (string system in plan.SystemName.ToArray()) listJumps.Items.Add(system);
+            foreach (string system in plan.SystemName.ToArray()) listJumps.Items.Add(system);
 
-                textDebug.Text = "Waiting for activating the assistant...";
-                textNextJump.Text = "... " + plan.SystemName[currentIndex];
-                flightPlanLoaded = true;
-            } catch (Exception) {
-                //ignore
-            }
-            
+            textDebug.Text = "Waiting for activating the assistant...";
+            textNextJump.Text = "... " + plan.SystemName[currentIndex];
+            flightPlanLoaded = true;
         }
         private void btnStart_Click(object sender, EventArgs e) {
+            SoundPlayer player = new SoundPlayer();
+            player.SoundLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"./../../error_start.wav");
+            player.PlaySync();
+            
             if (flightPlanLoaded) {
                 btnStart.Visible = false;
                 Clipboard.SetText(plan.SystemName[currentIndex]);

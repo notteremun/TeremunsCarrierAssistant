@@ -31,6 +31,7 @@ namespace TeremunsCarrierAssistant.Events {
             catch (Exception e) {
                 player.SoundLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"./../../shutdown_error.wav");
                 player.PlaySync();
+                player.PlaySync();
             }
 
 
@@ -39,9 +40,7 @@ namespace TeremunsCarrierAssistant.Events {
                 if (jsonObj.Contains("\"event\":\"FSDJump\"")) { fsdJumpData = JsonConvert.DeserializeObject<FSDJumpData>(jsonObj); }
                 if (jsonObj.Contains("\"event\":\"CarrierJumpRequest\"")) { carrierJumpRequestData = JsonConvert.DeserializeObject<CarrierJumpRequestData>(jsonObj); }
             }
-            player.SoundLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"./../../dial_chevron_beep2.wav");
-            player.PlaySync();
-            
+
         }
     }
 }

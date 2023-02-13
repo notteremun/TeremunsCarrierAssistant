@@ -14,7 +14,7 @@ namespace TeremunsCarrierAssistant {
         public readonly List<int>    FuelUsed          = new List<int>(); 
         public readonly List<string> IcyRing           = new List<string>(); 
         public readonly List<string> Pristine          = new List<string>(); 
-        public readonly List<int>    RestockTritium    = new List<int>(); 
+        public readonly List<string> RestockTritium    = new List<string>(); 
 
         public void ConvertFlightPlan(OpenFileDialog file) {
             using(var reader = new StreamReader(file.FileName)) {
@@ -30,12 +30,12 @@ namespace TeremunsCarrierAssistant {
                     SystemName.Add(values[0].Trim('"'));
                     Distance.Add( Math.Round(Convert.ToDouble(values[1].Trim('"').Replace('.', ',')), 2));
                     DistanceRemaining.Add(Math.Round(Convert.ToDouble(values[2].Trim('"').Replace('.', ',')), 2));
-                    TritiumTank.Add(Convert.ToInt32(values[3].Trim('"')));
+                    if(values[3].Trim('"') != String.Empty) TritiumTank.Add(Convert.ToInt32(values[3].Trim('"')));
                     TritiumMarket.Add(Convert.ToInt32(values[4].Trim('"')));
                     FuelUsed.Add(Convert.ToInt32(values[5].Trim('"')));
                     IcyRing.Add(values[6].Trim('"'));
                     Pristine.Add(values[7].Trim('"'));
-                    RestockTritium.Add(Convert.ToInt32(values[8].Trim('"')));
+                    RestockTritium.Add(values[8].Replace("\"", ""));
                 }
             }
         }

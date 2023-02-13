@@ -206,10 +206,9 @@ namespace TeremunsCarrierAssistant
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnOpenFileDialog);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Main";
-            this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.tritiumPosition)).EndInit();

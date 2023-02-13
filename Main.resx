@@ -150,17 +150,14 @@
   <data name="&gt;&gt;listJumps.Name" xml:space="preserve">
     <value>listJumps</value>
   </data>
-  <data name="&gt;&gt;textCurrentLocation.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
   <data name="&gt;&gt;galaxyMapLag.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;textTritiumPos.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="listJumps.ItemHeight" type="System.Int32, mscorlib">
-    <value>15</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>Main</value>
   </data>
   <data name="&gt;&gt;textNextJump.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -176,9 +173,6 @@
   </data>
   <data name="&gt;&gt;btnOpenFileDialog.Name" xml:space="preserve">
     <value>btnOpenFileDialog</value>
-  </data>
-  <data name="textNextJump.Text" xml:space="preserve">
-    <value>... ???</value>
   </data>
   <data name="listJumps.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 285</value>
@@ -200,9 +194,6 @@
   </data>
   <data name="&gt;&gt;listJumps.Type" xml:space="preserve">
     <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;listJumps.ZOrder" xml:space="preserve">
-    <value>9</value>
   </data>
   <data name="textGalaxyMapBuffer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -231,8 +222,8 @@
   <data name="&gt;&gt;tritiumPosition.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnStart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 37</value>
+  <data name="listJumps.ItemHeight" type="System.Int32, mscorlib">
+    <value>15</value>
   </data>
   <data name="textDebug.Font" type="System.Drawing.Font, System.Drawing">
     <value>Montserrat Medium, 8pt</value>
@@ -246,14 +237,17 @@
   <data name="&gt;&gt;countdown.Name" xml:space="preserve">
     <value>countdown</value>
   </data>
+  <data name="listJumps.Location" type="System.Drawing.Point, System.Drawing">
+    <value>519, 8</value>
+  </data>
   <data name="&gt;&gt;selectCarrierRoute.Name" xml:space="preserve">
     <value>selectCarrierRoute</value>
   </data>
   <data name="&gt;&gt;btnStart.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnUpdateLocation.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+  <data name="tritiumPosition.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Montserrat SemiBold, 8.25pt</value>
   </data>
   <data name="textCurrentLocation.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 8</value>
@@ -285,8 +279,8 @@
   <data name="textTritiumPos.Text" xml:space="preserve">
     <value>Tritium Position</value>
   </data>
-  <data name="tritiumPosition.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Montserrat SemiBold, 8.25pt</value>
+  <data name="btnStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 37</value>
   </data>
   <data name="&gt;&gt;btnStart.Name" xml:space="preserve">
     <value>btnStart</value>
@@ -327,11 +321,11 @@
   <data name="textCurrentLocation.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
+  <data name="checkRefuelMan.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Montserrat Medium, 8.25pt</value>
+  </data>
   <data name="&gt;&gt;tritiumPosition.ZOrder" xml:space="preserve">
     <value>5</value>
-  </data>
-  <data name="textNextJump.Size" type="System.Drawing.Size, System.Drawing">
-    <value>307, 33</value>
   </data>
   <data name="btnUpdateLocation.Size" type="System.Drawing.Size, System.Drawing">
     <value>119, 30</value>
@@ -345,6 +339,9 @@
   <data name="&gt;&gt;textDebug.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <data name="tritiumPosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 273</value>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -357,8 +354,8 @@
   <data name="&gt;&gt;textDebug.Name" xml:space="preserve">
     <value>textDebug</value>
   </data>
-  <data name="textGalaxyMapBuffer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>66, 296</value>
+  <data name="textCurrentLocation.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Montserrat Medium, 12pt</value>
   </data>
   <data name="textCurrentLocation.Size" type="System.Drawing.Size, System.Drawing">
     <value>506, 33</value>
@@ -375,8 +372,8 @@
   <data name="tritiumPosition.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="textCurrentLocation.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Montserrat Medium, 12pt</value>
+  <data name="&gt;&gt;listJumps.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="&gt;&gt;textGalaxyMapBuffer.Name" xml:space="preserve">
     <value>textGalaxyMapBuffer</value>
@@ -405,11 +402,11 @@
   <data name="&gt;&gt;textTritiumPos.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Main</value>
+  <data name="textGalaxyMapBuffer.Text" xml:space="preserve">
+    <value>Galaxy Map Buffer (s)</value>
   </data>
-  <data name="checkRefuelMan.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Montserrat Medium, 8.25pt</value>
+  <data name="textNextJump.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 33</value>
   </data>
   <data name="btnStart.Text" xml:space="preserve">
     <value>Enage Jumps</value>
@@ -429,8 +426,8 @@
   <data name="btnUpdateLocation.Text" xml:space="preserve">
     <value>Update Location</value>
   </data>
-  <data name="listJumps.Location" type="System.Drawing.Point, System.Drawing">
-    <value>519, 8</value>
+  <data name="textNextJump.Text" xml:space="preserve">
+    <value>... ???</value>
   </data>
   <data name="&gt;&gt;textNextJump.Parent" xml:space="preserve">
     <value>$this</value>
@@ -441,8 +438,8 @@
   <data name="&gt;&gt;checkRefuelMan.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="tritiumPosition.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 273</value>
+  <data name="&gt;&gt;textCurrentLocation.Name" xml:space="preserve">
+    <value>textCurrentLocation</value>
   </data>
   <data name="btnOpenFileDialog.Text" xml:space="preserve">
     <value>Select Route</value>
@@ -456,8 +453,8 @@
   <data name="galaxyMapLag.Location" type="System.Drawing.Point, System.Drawing">
     <value>21, 296</value>
   </data>
-  <data name="textGalaxyMapBuffer.Text" xml:space="preserve">
-    <value>Galaxy Map Buffer (s)</value>
+  <data name="&gt;&gt;textCurrentLocation.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="textGalaxyMapBuffer.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 17</value>
@@ -486,11 +483,14 @@
   <data name="textGalaxyMapBuffer.Font" type="System.Drawing.Font, System.Drawing">
     <value>Montserrat Medium, 8pt</value>
   </data>
-  <data name="&gt;&gt;textCurrentLocation.Name" xml:space="preserve">
-    <value>textCurrentLocation</value>
+  <data name="textGalaxyMapBuffer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>66, 296</value>
   </data>
   <data name="$this.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
+  </data>
+  <data name="btnUpdateLocation.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
   </data>
   <data name="&gt;&gt;galaxyMapLag.ZOrder" xml:space="preserve">
     <value>3</value>

@@ -94,6 +94,11 @@
         <None Include="App.config" />
     </ItemGroup>
     <ItemGroup>
+      <Content Include="dial_chevron_beep2.wav" />
+      <Content Include="error_end.wav" />
+      <Content Include="error_start.wav" />
+      <Content Include="f_chevron_encode.wav" />
+      <Content Include="f_chevron_lock.wav" />
       <Content Include="README.md" />
       <Content Include="Resources\appBackground.png" />
       <Content Include="Resources\GsacbotLogo.png" />
